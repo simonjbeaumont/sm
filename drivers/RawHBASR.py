@@ -334,6 +334,8 @@ class RawHBAVDI(LUNperVDI.RAWVDI):
         sm_config = util.default(self, "sm_config", lambda: {})
         sm_config['LUNid'] = str(self.LUNid)
         sm_config['SCSIid'] = self.SCSIid
+        # override whatever default kind is to use kernel blkback
+        sm_config['backend-kind'] = 'vbd'
         self.sm_config = sm_config
 
     def attach(self, sr_uuid, vdi_uuid):
