@@ -450,7 +450,7 @@ def _remove(path, config_param=None):
     ret = util.pread2(cmd)
 
 def rename(path, newName):
-    cmd = [CMD_LVRENAME, path, newName]
+    cmd = ["/sbin/xenvm","lvrename", path, newName]                                                                              
     util.pread(cmd)
 
 # extend checks if the LV is active, if active extends the LV
