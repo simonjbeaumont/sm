@@ -16,6 +16,7 @@ SM_DRIVERS += OCFSoISCSI
 SM_DRIVERS += OCFSoHBA
 SM_DRIVERS += SHM
 SM_DRIVERS += CIFS
+SM_DRIVERS += LVHDoFCoE
 
 SM_LIBS := SR
 SM_LIBS += SRCommand
@@ -58,6 +59,7 @@ SM_LIBS += resetvdis
 SM_LIBS += B_util
 SM_LIBS += wwid_conf
 SM_LIBS += trim_util
+SM_LIBS += fcoelib
 
 UDEV_RULES = 39-multipath 40-multipath 55-xs-mpath-scsidev 58-xapi
 MPATH_DAEMON = sm-multipath
@@ -162,6 +164,7 @@ install: precheck
 	cd $(SM_STAGING)$(SM_DEST) && rm -f LVHDSR && ln -sf LVHDSR.py LVMSR
 	cd $(SM_STAGING)$(SM_DEST) && rm -f LVHDoISCSISR && ln -sf LVHDoISCSISR.py LVMoISCSISR
 	cd $(SM_STAGING)$(SM_DEST) && rm -f LVHDoHBASR && ln -sf LVHDoHBASR.py LVMoHBASR
+	cd $(SM_STAGING)$(SM_DEST) && rm -f LVHDoFCoESR && ln -sf LVHDoFCoESR.py LVMoFCoESR
 	cd $(SM_STAGING)$(SM_DEST) && rm -f OCFSSR
 	cd $(SM_STAGING)$(SM_DEST) && rm -f OCFSoISCSISR
 	cd $(SM_STAGING)$(SM_DEST) && rm -f OCFSoHBASR
@@ -179,6 +182,7 @@ install: precheck
 	install -m 755 drivers/trim $(SM_STAGING)$(PLUGIN_SCRIPT_DEST)
 	ln -sf $(PLUGIN_SCRIPT_DEST)vss_control $(SM_STAGING)$(SM_DEST)
 	install -m 755 drivers/iscsilib.py $(SM_STAGING)$(SM_DEST)
+	install -m 755 drivers/fcoelib.py $(SM_STAGING)$(SM_DEST)
 	mkdir -p $(SM_STAGING)$(LIBEXEC)
 	install -m 755 scripts/local-device-change $(SM_STAGING)$(LIBEXEC)
 	install -m 755 scripts/check-device-sharing $(SM_STAGING)$(LIBEXEC)
