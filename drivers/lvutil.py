@@ -497,7 +497,7 @@ def exists(path):
 
 def setSize(path, size, confirm):
     sizeMB = size / (1024 * 1024)
-    cmd = [CMD_LVRESIZE, "-L", str(sizeMB), path]
+    cmd = ["/sbin/xenvm", "lvresize", "-L", str(sizeMB), path]
     if confirm:
         util.pread3(cmd, "y\n")
     else:
