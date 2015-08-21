@@ -97,7 +97,7 @@ def runxenvmd(vg,devices):
       util.makedirs("/etc/xenvm.d")
     with open(configfile,'w') as f:
         f.write(config)
-    cmd = ["/bin/xenvmd", "--daemon", "--config", configfile]
+    cmd = ["/sbin/xenvmd", "--daemon", "--config", configfile]
     util.pread2(cmd)
 
 def runxenvm_local_allocator(vg, devices, uri):
