@@ -276,8 +276,9 @@ def write_xenvmd_config(uuid,vg,devices):
  (host_low_water_mark 1024)
  (vg %s)
  (devices (%s))
+ (rrd_ds_owner %s)
 )
-""" % (sockpath,vg," ".join(devices))
+""" % (sockpath, vg, " ".join(devices), uuid)
     if not os.path.exists(config_dir):
       util.makedirs("/etc/xenvm.d")
     if not os.path.exists(os.path.dirname(sockpath)):
